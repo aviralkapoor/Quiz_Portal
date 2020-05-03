@@ -1,0 +1,31 @@
+.jumbotron{
+    background-color : #5680e9 !important;
+    color: #f4f4f4;
+}
+
+.btn{
+	padding: 8px 50px;
+	border-radius: 45px !important;
+	border:2px solid white;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 500;
+	background-color: #5680e9 !important; 
+	color: white !important;
+}
+
+.btn:hover{
+	border:2px solid #5680e9;
+	background-color:white !important;
+	color:#5680e9 !important;
+}
+
+.form-control{
+    border-radius: 45px !important;
+	border:2px solid #f4f4f4;
+	padding: 7px 20px;
+}
+
+.form-control:hover{
+    border: 2px solid #5680e9;
+}
