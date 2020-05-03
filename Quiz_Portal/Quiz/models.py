@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 class Mentee(models.Model):
     name=models.CharField(max_length=50)
     phn_num=models.CharField(max_length=10,unique=True)
@@ -8,6 +10,8 @@ class Mentee(models.Model):
     ans3=models.CharField(max_length=200)
     ans4=models.CharField(max_length=200)
     ans5=models.CharField(max_length=200)
+    date_time=models.DateTimeField(default=timezone.now)
+    score=models.IntegerField(default=0)
     
     def __str__(self):
         return self.name

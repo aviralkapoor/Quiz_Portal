@@ -20,6 +20,7 @@ def success(req):
     answers=[]
     score=0
     for m in m_ans:
+        score=0
         for q in c_ans:
             answers.append(q.ca)
         if m.ans1==answers[0]:
@@ -32,4 +33,7 @@ def success(req):
             score+=10
         if m.ans5==answers[4]:
             score+=10
+        Mentee.objects.filter(phn_num=m.phn_num).update(
+            score=score,
+        )
     return render(req,'Quiz/success.html',{'score':score,'max_score':max_score})
