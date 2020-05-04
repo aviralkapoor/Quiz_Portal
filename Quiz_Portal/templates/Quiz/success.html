@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 {% extends "Quiz/index.html" %}
-
+{% load static %}
 {% block body_block %}
 <div class="container alert alert-success text-center" role="alert">
     <p>Record Successfully Submitted, Thank You!</p>
-    <p>Your Score is {{ score }} / {{ max_score }}</p>
+    <p>Your Score is <strong>{{ score }} / {{ max_score }}</strong></p>
+    {% for key,value in cmnt.items %}
+    {% if key is score %}
+    <p><strong>"{{ value }}"</strong></p>
+    {% endif %}
+    {% endfor %}
+    {% if wrng_ans %}
+    {% for key,value in wrng_ans.items %}
+    <p>Question: {{ value.0 }}</p>
+    <p>Your Answer: {{ key }} <img src="{% static 'img/wrong.png' %}" width="15px" height="15px"></p>
+    <p>Correct Answer: {{ value.1 }}</p>
+    {% endfor %}
+    {% endif %}
     <p><a href="{% url 'result' %}">Go to Leader Board</a></p>
 </div>
 {% endblock %}
