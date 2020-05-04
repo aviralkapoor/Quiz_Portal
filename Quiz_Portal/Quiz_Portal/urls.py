@@ -20,5 +20,6 @@ from Quiz import views
 urlpatterns = [
     re_path(r'^$',views.index,name="index"),
     re_path(r'^success/',views.success,name="success"),
+    re_path(r'^result/',views.result,name="result"),
     path('admin/', admin.site.urls),
 ]

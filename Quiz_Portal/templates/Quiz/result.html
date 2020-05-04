@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends "Quiz/index.html" %}
+
+{% block body_block %}
+<div class="container alert alert-success text-center" role="alert">
+    Leader Board
+</div>
+<div class="container">
+    <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Batch</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for i in res %}
+          <tr>
+            <th scope="row">{{i.id}}</th>
+            <td>{{ i.name }}</td>
+            <td>{{ i.batch_num }}</td>
+            <td>{{ i.score }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endblock %}

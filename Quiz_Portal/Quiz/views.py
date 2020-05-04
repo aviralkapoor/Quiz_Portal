@@ -37,3 +37,7 @@ def success(req):
             score=score,
         )
     return render(req,'Quiz/success.html',{'score':score,'max_score':max_score})
+
+def result(req):
+    m=Mentee.objects.all().order_by('-score')
+    return render(req,'Quiz/result.html',{'res':m})

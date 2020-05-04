@@ -3,7 +3,8 @@
 
 {% block body_block %}
 <div class="container alert alert-success text-center" role="alert">
-    Record Successfully Submitted, Thank You!
+    <p>Record Successfully Submitted, Thank You!</p>
     <p>Your Score is {{ score }} / {{ max_score }}</p>
+    <p><a href="{% url 'result' %}">Go to Leader Board</a></p>
 </div>
 {% endblock %}
