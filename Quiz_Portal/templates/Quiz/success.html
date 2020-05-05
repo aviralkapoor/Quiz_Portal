@@ -13,7 +13,7 @@
     {% if wrng_ans %}
     {% for key,value in wrng_ans.items %}
     <p>Question: {{ value.0 }}</p>
-    <p>Your Answer: {{ key }} <img src="{% static 'img/wrong.png' %}" width="15px" height="15px"></p>
+    <p>Your Answer: {{ key }} <img src="{% static 'img/Wrong.png' %}" width="15px" height="15px"></p>
     <p>Correct Answer: {{ value.1 }}</p>
     {% endfor %}
     {% endif %}
