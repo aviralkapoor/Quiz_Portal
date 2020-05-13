@@ -4,8 +4,12 @@ from .models import *
 QuesList=[]
 AnsList={}
 choices_ans=[]
+
+mentee_curr=Mentee_2
+seq=6
+
 for q in Question.objects.all():
-    if int(q.id) > 6:
+    if int(q.id) > seq:
         QuesList.append(q.ques)
         choices_ans.append((q.opt1,q.opt1))
         choices_ans.append((q.opt2,q.opt2))
@@ -26,5 +30,5 @@ class mentee_form(forms.ModelForm):
     ans5= forms.CharField(label=QuesList[4], widget=forms.RadioSelect(choices=AnsList[QuesList[4]]))
 
     class Meta():
-        model=Mentee_2
+        model=mentee_curr
         fields=['name','phn_num','batch_num','ans1','ans2','ans3','ans4','ans5']

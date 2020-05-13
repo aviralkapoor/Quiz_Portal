@@ -15,9 +15,13 @@ def index(req):
         form=mentee_form()
     return render(req,'Quiz/index.html',{'contact_form':form})
 
+
+mentee_curr=Mentee_2
+seq=6
+
 def success(req,phn_num):
     c_ans=Question.objects.all()
-    m_ans=Mentee_2.objects.all()
+    m_ans=mentee_curr.objects.all()
     answers=[]
     score=0
     max_score=0
@@ -28,7 +32,7 @@ def success(req,phn_num):
             score=0
             wrng_ans={}
             for q in c_ans:
-                if int(q.id) > 6:     
+                if int(q.id) > seq:     
                     answers.append((q.ques,q.ca))
                     max_score+=10 #Each Ques carries 10 marks.
             if m.ans1==answers[0][1]:
@@ -51,10 +55,22 @@ def success(req,phn_num):
                 score+=10
             else:
                 wrng_ans[m.ans5]=answers[4]
-            Mentee_2.objects.filter(phn_num=m.phn_num).update(
+            mentee_curr.objects.filter(phn_num=m.phn_num).update(
             score=score,
             )
     return render(req,'Quiz/success.html',{'score':score,'max_score':max_score,'wrng_ans':wrng_ans,'cmnt':cmnt})
+
 def result(req):
-    m=Mentee_2.objects.all().order_by('-score')
+    m=mentee_curr.objects.all().order_by('-score')
     return render(req,'Quiz/result.html',{'res':m})
+
+def base(req):
+    return render(req,'Quiz/base.html',{'num':2})
+
+def verify(req):
+    key=req.POST["key"]
+    if key == 'ac1998Z':
+        return HttpResponseRedirect(reverse('index'))
+    else:
+        return render(req,'Quiz/base.html',{'num':2,'key':'Invalid Key'})
+

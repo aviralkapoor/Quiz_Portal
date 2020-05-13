@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "Quiz/index.html" %}
+{% load static %}
+{% block body_block %}
+
+    <div class="card shadow p-3 mb-4 bg-white rounded mt-4 mx-auto" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Verify</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Key for Quiz #{{ num }}</h6>
+          <hr>
+          <p class="card-text text-white">
+              {% if key %}
+              <p>{{ key }}</p>
+              {% endif %}
+            <form action="verify" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <input type="text" placeholder="Enter here" name="key" class="form-control">
+                    <button type="submit" class="btn mt-4">Verify</button>
+                </div>
+            </form> 
+          </p>
+        </div>
+    </div> 
+
+{% endblock %}

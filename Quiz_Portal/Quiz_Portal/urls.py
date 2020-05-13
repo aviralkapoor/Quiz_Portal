@@ -18,7 +18,9 @@ from django.urls import path ,re_path
 from Quiz import views
 
 urlpatterns = [
-    re_path(r'^$',views.index,name="index"),
+    re_path(r'^$',views.base,name="base"),
+    re_path(r'^index/',views.index,name="index"),
+    re_path(r'^verify',views.verify,name="verify"),
     re_path(r'^success/(?P<phn_num>\d+)/$',views.success,name="success"),
     re_path(r'^result/',views.result,name="result"),
     path('admin/', admin.site.urls),
