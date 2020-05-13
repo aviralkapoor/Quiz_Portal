@@ -17,10 +17,10 @@ def index(req):
 
 def success(req,phn_num):
     c_ans=Question.objects.all()
-    m_ans=Mentee.objects.all()
-    max_score=Question.objects.count()*10 #Each Ques carries 10 marks.
+    m_ans=Mentee_2.objects.all()
     answers=[]
     score=0
+    max_score=0
     wrng_ans={}
     cmnt={0:'I believe in you',10:'Not bad',20:"One more time and you'll have it",30:"You're doing a good job",40:"You've got your brain in gear today",50:'I knew you could do it'}
     for m in m_ans:
@@ -28,7 +28,9 @@ def success(req,phn_num):
             score=0
             wrng_ans={}
             for q in c_ans:
-                answers.append((q.ques,q.ca))
+                if int(q.id) > 6:     
+                    answers.append((q.ques,q.ca))
+                    max_score+=10 #Each Ques carries 10 marks.
             if m.ans1==answers[0][1]:
                 score+=10
             else:
@@ -49,10 +51,10 @@ def success(req,phn_num):
                 score+=10
             else:
                 wrng_ans[m.ans5]=answers[4]
-            Mentee.objects.filter(phn_num=m.phn_num).update(
+            Mentee_2.objects.filter(phn_num=m.phn_num).update(
             score=score,
             )
     return render(req,'Quiz/success.html',{'score':score,'max_score':max_score,'wrng_ans':wrng_ans,'cmnt':cmnt})
 def result(req):
-    m=Mentee.objects.all().order_by('-score')
+    m=Mentee_2.objects.all().order_by('-score')
     return render(req,'Quiz/result.html',{'res':m})

@@ -5,13 +5,14 @@ QuesList=[]
 AnsList={}
 choices_ans=[]
 for q in Question.objects.all():
-    QuesList.append(q.ques)
-    choices_ans.append((q.opt1,q.opt1))
-    choices_ans.append((q.opt2,q.opt2))
-    choices_ans.append((q.opt3,q.opt3))
-    choices_ans.append((q.opt4,q.opt4))
-    AnsList[q.ques]=choices_ans
-    choices_ans=[]
+    if int(q.id) > 6:
+        QuesList.append(q.ques)
+        choices_ans.append((q.opt1,q.opt1))
+        choices_ans.append((q.opt2,q.opt2))
+        choices_ans.append((q.opt3,q.opt3))
+        choices_ans.append((q.opt4,q.opt4))
+        AnsList[q.ques]=choices_ans
+        choices_ans=[]
 
 
 class mentee_form(forms.ModelForm):
@@ -25,5 +26,5 @@ class mentee_form(forms.ModelForm):
     ans5= forms.CharField(label=QuesList[4], widget=forms.RadioSelect(choices=AnsList[QuesList[4]]))
 
     class Meta():
-        model=Mentee
+        model=Mentee_2
         fields=['name','phn_num','batch_num','ans1','ans2','ans3','ans4','ans5']
